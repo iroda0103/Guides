@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/users?i=9
+Content-Type: application/json
+
+{   
+    "first_name":"Iroda",
+    "last_name":"Muminova",
+    "age":19,
+    "username":"iroda011322s",
+    "role":"admin",
+    "password":"1234"
+}
