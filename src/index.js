@@ -1,5 +1,6 @@
 const express = require("express");
 const router = require("./controllers");
+const config = require("./shared/config");
 const { connect } = require("./data-access");
 
 const app = express();
@@ -15,6 +16,6 @@ connect()
     console.log("Ma'lumotlar omborida ulanishda xatolik.", e);
   });
 
-app.listen(3000, () => {
-  console.log("Server 3000-portda ishlayapti");
+app.listen(config.port, () => {
+  console.log(`Server ${config.port}-portda ishlayapti`);
 });
