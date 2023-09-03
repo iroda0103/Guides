@@ -1,14 +1,17 @@
-const { addUser,listUser } = require("../../use-cases/users");
+const { addUser, listUser, showUser } = require("../../use-cases/users");
 
 const makePostUser = require("./postUser");
-const makeGetUsers=require('./getUsers')
+const makeGetUsers = require("./getUsers");
+const makeGetUser = require("./getUser");
 
 const postUser = makePostUser({ addUser });
-const getUsers=makeGetUsers({listUser})
+const getUsers = makeGetUsers({ listUser });
+const getUser = makeGetUser({ showUser });
 
 const usersController = Object.freeze({
   postUser,
-  getUsers
+  getUsers,
+  getUser,
 });
 
 module.exports = usersController;

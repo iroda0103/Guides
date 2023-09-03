@@ -2,7 +2,9 @@ const model = require("./mongo/models/userModel");
 
 const userDb = Object.freeze({
   insert,
-  findAll
+  findAll,
+  findById,
+  findOne
 });
 
 async function insert({ id: _id, ...info }) {
@@ -31,11 +33,34 @@ async function findAll({ filters, q, page, sort }) {
   }
 
   if (sort) {
-    dbQuery.sort({[sort.by]:(sort.order=='asc'?1:-1)})
+    dbQuery.sort({ [sort.by]: sort.order == "asc" ? 1 : -1 });
   }
 
-  const result=await dbQuery;
-  return {data:result,total}
+  const result = await dbQuery;
+  return { data: result, total };
 }
+
+async function findById({ id: _id }) {
+  const result = await model.findById({ _id }).lean();
+
+  if (!result) {
+    return null;
+  }
+
+  const { _id: id, ...info } = result;
+  return { id, ...info };
+}
+
+async function findOne({ id: _id }) {
+  const result = await model.findById({ _id }).lean();
+
+  if (!result) {
+    return null;
+  }
+
+  const { _id: id, ...info } = result;
+  return { id, ...info };
+}
+
 
 module.exports = userDb;

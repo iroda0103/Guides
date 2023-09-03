@@ -2,7 +2,7 @@ POST http://localhost:3000/api/users?i=9
 Content-Type: application/json
 
 {   
-    "first_name":"Ierroda",
+    "first_name":"Iroda",
     "last_name":"rere",
     "age":20,
     "username":"ererere",
