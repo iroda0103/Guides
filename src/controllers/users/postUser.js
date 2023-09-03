@@ -1,3 +1,5 @@
+const { InvalidPropertyError } = require("../../shared/errors");
+const { mapErrorToStatus } = require("../../shared/errors/handle");
 const httpValidator = require("../../shared/validator");
 const { postUserSchema } = require("./validation");
 
@@ -11,7 +13,7 @@ module.exports = function makePostUser({ addUser }) {
       const { error, body } = await validator.validate();
 
       if (error) {
-        throw new Error(error);
+        throw new InvalidPropertyError(error);
       }
 
       const data = await addUser({ ...body });
@@ -25,13 +27,12 @@ module.exports = function makePostUser({ addUser }) {
       };
     } catch (e) {
       console.log(e);
-      let statusCode = 500;
 
       return {
         headers: {
           "Content-Type": "application/json",
         },
-        statusCode,
+        statusCode: mapErrorToStatus(e),
         body: {
           message: e.message,
         },

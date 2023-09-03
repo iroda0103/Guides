@@ -1,3 +1,5 @@
+const { InvalidPropertyError } = require("../../shared/errors");
+const { mapErrorToStatus } = require("../../shared/errors/handle");
 const httpValidator = require("../../shared/validator");
 const { deleteUserSchema } = require("./validation");
 
@@ -11,7 +13,7 @@ module.exports = function makeDeleteUser({ removeUser }) {
       const { error, params } = await validator.validate();
 
       if (error) {
-        throw new Error(error);
+        throw new InvalidPropertyError(error);
       }
 
       const result = await removeUser({ ...params });
@@ -25,13 +27,12 @@ module.exports = function makeDeleteUser({ removeUser }) {
       };
     } catch (e) {
       console.log(e);
-      let statusCode = 500;
 
       return {
         headers: {
           "Content-Type": "application/json",
         },
-        statusCode,
+        statusCode: mapErrorToStatus(e),
         body: { message: e.message },
       };
     }

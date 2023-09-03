@@ -1,3 +1,5 @@
+const { InvalidPropertyError } = require("../../shared/errors");
+
 module.exports = function buildMakeUser({ Id, Hash }) {
   return function makeUser({
     id = Id.makeId(),
@@ -9,31 +11,45 @@ module.exports = function buildMakeUser({ Id, Hash }) {
     password,
   } = {}) {
     if (!last_name) {
-      throw new Error("Foydalanuvchida yaroqli last_name bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli last_name bo'lishi shart."
+      );
     }
 
     if (!username) {
-      throw new Error("Foydalanuvchida yaroqli username bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli username bo'lishi shart."
+      );
     }
 
     if (!password) {
-      throw new Error("Foydalanuvchida yaroqli phone bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli phone bo'lishi shart."
+      );
     }
 
     if (!id) {
-      throw new Error("Foydalanuvchida yaroqli id bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli id bo'lishi shart."
+      );
     }
 
     if (!role) {
-      throw new Error("Foydalanuvchida yaroqli rol (role) bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli rol (role) bo'lishi shart."
+      );
     }
 
     if (!["admin", "employee"].includes(role)) {
-      throw new Error("Foydalanuvchida yaroqli role bo'lishi kk");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli role bo'lishi kk"
+      );
     }
 
     if (!first_name) {
-      throw new Error("Foydalanuvchida yaroqli firts_name bo'lishi shart.");
+      throw new InvalidPropertyError(
+        "Foydalanuvchida yaroqli firts_name bo'lishi shart."
+      );
     }
 
     return Object.freeze({
