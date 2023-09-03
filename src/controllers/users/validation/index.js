@@ -1,5 +1,7 @@
-const {postUserSchema}=require('./post-user')
+const {postUserSchema}=require('./postUser')
+const {getUsersSchema}=require('./getUsers')
 
 module.exports={
-    postUserSchema
+    postUserSchema,
+    getUsersSchema
 }

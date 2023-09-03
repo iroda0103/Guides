@@ -19,11 +19,11 @@ module.exports = function makeExpressCallback(controllers) {
     };
     controllers(httpRequest)
       .then((httpResponse) => {
-        console.log(httpResponse,'ppp');
         if (httpResponse.headers) {
           res.set(httpResponse.headers);
         }
-        res.status(httpResponse.statusCode).send(httpResponse.body)
+
+        res.status(httpResponse.statusCode).send(httpResponse.body);
       })
       .catch((e) => {
         console.log(e);

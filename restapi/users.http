@@ -2,10 +2,16 @@ POST http://localhost:3000/api/users?i=9
 Content-Type: application/json
 
 {   
-    "first_name":"Iroda",
-    "last_name":"Muminova",
-    "age":19,
-    "username":"iroda01zx1322s",
+    "first_name":"Ierroda",
+    "last_name":"rere",
+    "age":20,
+    "username":"ererere",
     "role":"admin",
     "password":"1234"
 }
+
+###
+GET http://localhost:3000/api/users?page[limit]=13&page[offset]=0&sort[by]=age&sort[order]=desc
+
+###
+GET http://localhost:3000/api/users/64f34587ea2e82bb29e0d43b
