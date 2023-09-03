@@ -4,7 +4,8 @@ const userDb = Object.freeze({
   insert,
   findAll,
   findById,
-  findOne
+  findOne,
+  remove,
 });
 
 async function insert({ id: _id, ...info }) {
@@ -62,5 +63,8 @@ async function findOne({ id: _id }) {
   return { id, ...info };
 }
 
+async function remove({ id: _id }) {
+  return model.deleteOne({ _id }).lean();
+}
 
 module.exports = userDb;

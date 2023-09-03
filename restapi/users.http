@@ -14,4 +14,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/users?page[limit]=13&page[offset]=0&sort[by]=age&sort[order]=desc
 
 ###
-GET http://localhost:3000/api/users/64f34587ea2e82bb29e0d43b
+GET http://localhost:3000/api/users/64f33f968d57ee76ef9ab2f1
+
+###
+DELETE http://localhost:3000/api/users/64f33f968d57ee76ef9ab2f1

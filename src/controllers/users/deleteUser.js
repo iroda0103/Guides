@@ -1,12 +1,12 @@
 const httpValidator = require("../../shared/validator");
-const { getUserSchema } = require("./validation");
+const { deleteUserSchema } = require("./validation");
 
-module.exports = function makeGetUser({ showUser }) {
-  return async function getUser(httpRequest) {
+module.exports = function makeDeleteUser({ removeUser }) {
+  return async function deleteUser(httpRequest) {
     try {
       const validator = httpValidator(
         { params: httpRequest.params },
-        getUserSchema
+        deleteUserSchema
       );
       const { error, params } = await validator.validate();
 
@@ -14,7 +14,7 @@ module.exports = function makeGetUser({ showUser }) {
         throw new Error(error);
       }
 
-      const result = await showUser({ ...params });
+      const result = await removeUser({ ...params });
 
       return {
         headers: {
