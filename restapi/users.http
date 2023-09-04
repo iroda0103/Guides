@@ -5,7 +5,7 @@ Content-Type: application/json
     "first_name":"Iroda",
     "last_name":"rere",
     "age":20,
-    "username":"ererere",
+    "username":"iroda0103",
     "role":"admin",
     "password":"1234"
 }
@@ -14,7 +14,16 @@ Content-Type: application/json
 GET http://localhost:3000/api/users?page[limit]=13&page[offset]=0&sort[by]=age&sort[order]=desc
 
 ###
-GET http://localhost:3000/api/users/64f33f968d57ee76ef9ab2f1
+GET http://localhost:3000/api/users/64f590a6e744dc7224f02d9b
 
 ###
 DELETE http://localhost:3000/api/users/64f33f968d57ee76ef9ab2f1
+
+###
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username":"iroda0103",
+    "password":"1234"
+}

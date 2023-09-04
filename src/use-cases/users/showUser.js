@@ -6,12 +6,12 @@ const { NotFoundError } = require('../../shared/errors');
  */
 module.exports = function makeShowUser({ userDb }) {
   return async function showUser(filter) {
-    const userInfo = await userDb.findOne(filter);
+    const userInfo = await userDb.findById(filter)
 
     if (!userInfo) {
       throw new NotFoundError("Foydalanuvchi topilmadi");
     }
 
-    return userInfo;
+    return {data:userInfo};
   };
 };

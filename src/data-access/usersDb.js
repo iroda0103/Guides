@@ -52,8 +52,8 @@ async function findById({ id: _id }) {
   return { id, ...info };
 }
 
-async function findOne({ id: _id }) {
-  const result = await model.findById({ _id }).lean();
+async function findOne(filter) {
+  const result = await model.findOne(filter).lean();
 
   if (!result) {
     return null;
@@ -68,5 +68,3 @@ async function remove({ id: _id }) {
 }
 
 module.exports = userDb;
-
-
