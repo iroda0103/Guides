@@ -1,12 +1,41 @@
 const express = require("express");
+const Jwt = require("../Jwt");
+const { mapErrorToStatus } = require("../../shared/errors/handle");
 
-module.exports = function makeExpressCallback(controllers) {
+module.exports = function makeExpressCallback(
+  controllers,
+  { checkLogin = false, checkRoles } = {}
+) {
+  if (checkRoles) {
+    checkLogin = true;
+  }
+
   /**
    * @param {express.Request} req
    * @param {express.Response} res
    */
   return (req, res) => {
     let additional = {};
+
+    if (checkLogin) {
+      const { authorization } = req.headers;
+      const token = (authorization || "").split(" ")[1];
+      const result = Jwt.verifyToken(token);
+
+      if (!result) {
+        return res.status(401).json({ error: "Login qilmagansiz" });
+      }
+
+      if (result) {
+        additional.user = result.user;
+      }
+    }
+
+    if (checkRoles) {
+      if (!checkRoles.some((role) => role == additional.user.role)) {
+        return res.status(403).json({ error: "Siz ruxsatga ega emassiz" });
+      }
+    }
     const httpRequest = {
       body: req.body,
       params: req.params,
@@ -17,6 +46,7 @@ module.exports = function makeExpressCallback(controllers) {
       },
       ...additional,
     };
+
     controllers(httpRequest)
       .then((httpResponse) => {
         if (httpResponse.headers) {
@@ -27,7 +57,10 @@ module.exports = function makeExpressCallback(controllers) {
       })
       .catch((e) => {
         console.log(e);
-        res.status(500).send({ error: "An unknown error occured." });
+
+        res
+          .status(mapErrorToStatus)
+          .send({ error: "An unknown error occured." });
       });
   };
 };

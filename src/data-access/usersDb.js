@@ -6,6 +6,7 @@ const userDb = Object.freeze({
   findById,
   findOne,
   remove,
+  update,
 });
 
 async function insert({ id: _id, ...info }) {
@@ -65,6 +66,15 @@ async function findOne(filter) {
 
 async function remove({ id: _id }) {
   return model.deleteOne({ _id }).lean();
+}
+
+async function update({ id: _id, ...data }) {
+  const result = await model
+    .findOneAndUpdate({ _id }, data, { new: true })
+    .lean();
+  const { _id: id, ...res } = result;
+
+  return { id, ...res };
 }
 
 module.exports = userDb;

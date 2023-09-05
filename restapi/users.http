@@ -1,11 +1,12 @@
 POST http://localhost:3000/api/users?i=9
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNTkwYTZlNzQ0ZGM3MjI0ZjAyZDliIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5MzgzMTU1NCwiZXhwIjoxNjk0Mjc0MzU0fQ.RSyVRdSURJIzhD1UvUnW5k5ls-K8u7B-xfJ9xxkSsaY
 Content-Type: application/json
 
 {   
     "first_name":"Iroda",
     "last_name":"rere",
     "age":20,
-    "username":"iroda0103",
+    "username":"ironda0xz10djd3",
     "role":"admin",
     "password":"1234"
 }
@@ -14,7 +15,8 @@ Content-Type: application/json
 GET http://localhost:3000/api/users?page[limit]=13&page[offset]=0&sort[by]=age&sort[order]=desc
 
 ###
-GET http://localhost:3000/api/users/64f590a6e744dc7224f02d9b
+GET http://localhost:3000/api/users/64f5ce2f3556b7e622d79bb0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNTkwYTZlNzQ0ZGM3MjI0ZjAyZDliIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5MzgzMTU1NCwiZXhwIjoxNjk0Mjc0MzU0fQ.RSyVRdSURJIzhD1UvUnW5k5ls-K8u7B-xfJ9xxkSsaY
 
 ###
 DELETE http://localhost:3000/api/users/64f33f968d57ee76ef9ab2f1
@@ -24,6 +26,29 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "username":"iroda0103",
+    "username":"ironda010dd3",
     "password":"1234"
 }
+
+###
+GET http://localhost:3000/api/users/me
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNWNlMmYzNTU2YjdlNjIyZDc5YmIwIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5Mzg4ODYwMiwiZXhwIjoxNjk0MzMxNDAyfQ.YV-LfIWflhqE94RfwfqnoyYfVLXQh2oZDnTeDgHoHGs
+
+###
+PATCH http://localhost:3000/api/users/64f590a6e744dc7224f02d9b
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNTkwYTZlNzQ0ZGM3MjI0ZjAyZDliIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5MzgzMTU1NCwiZXhwIjoxNjk0Mjc0MzU0fQ.RSyVRdSURJIzhD1UvUnW5k5ls-K8u7B-xfJ9xxkSsaY
+Content-Type: application/json
+
+{
+    "first_name":"Isdsdd"
+}
+
+###
+PATCH http://localhost:3000/api/users/me
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNWNlMmYzNTU2YjdlNjIyZDc5YmIwIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5Mzg4ODYwMiwiZXhwIjoxNjk0MzMxNDAyfQ.YV-LfIWflhqE94RfwfqnoyYfVLXQh2oZDnTeDgHoHGs
+Content-Type: application/json
+
+{
+    "first_name":"Iroda0103"
+}
+
