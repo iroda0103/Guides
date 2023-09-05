@@ -39,7 +39,13 @@ async function findAll({ filters, q, page, sort }) {
   }
 
   const result = await dbQuery;
-  return { data: result, total };
+
+  const res = result.map((user) => {
+    let { _id: id, ...info } = user;
+    return { id, ...info };
+  });
+
+  return { data: res, total };
 }
 
 async function findById({ id: _id }) {
