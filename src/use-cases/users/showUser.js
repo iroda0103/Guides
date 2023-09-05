@@ -1,4 +1,4 @@
-const { NotFoundError } = require('../../shared/errors');
+const { NotFoundError } = require("../../shared/errors");
 
 /**
  * @param {object} deps
@@ -6,12 +6,12 @@ const { NotFoundError } = require('../../shared/errors');
  */
 module.exports = function makeShowUser({ userDb }) {
   return async function showUser(filter) {
-    const userInfo = await userDb.findById(filter)
+    const userInfo = await userDb.findById(filter);
 
     if (!userInfo) {
       throw new NotFoundError("Foydalanuvchi topilmadi");
     }
 
-    return {data:userInfo};
+    return { data: userInfo };
   };
 };

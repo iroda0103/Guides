@@ -1,9 +1,8 @@
-const { NotFoundError } = require('../../shared/errors');
+const { NotFoundError } = require("../../shared/errors");
 
 /**
  * @param {object} deps
  * @param {import('../../data-access/usersDb')} deps.usersDb
- * @param {import('../../adapters/Upload')} deps.Upload
  */
 module.exports = function makeRemoveUser({ userDb }) {
   return async function removeUser({ id }) {
