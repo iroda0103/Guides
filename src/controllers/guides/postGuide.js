@@ -6,7 +6,10 @@ const { postGuideSchema } = require("./validation");
 module.exports = function makePostGuide({ addGuide }) {
   return async function postGuide(httpRequest) {
     try {
-      const validator = httpValidator({ body: httpRequest.body },postGuideSchema);
+      const validator = httpValidator(
+        { body: httpRequest.body },
+        postGuideSchema
+      );
       const { error, body } = await validator.validate();
 
       if (error) {
