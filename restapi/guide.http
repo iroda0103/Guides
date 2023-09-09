@@ -2,16 +2,16 @@ POST http://localhost:3000/api/guides
 Content-Type: application/json
 
 {
-    "title":"Qoida1",
+    "title":"Qoidad",
     "content":"Content1"
 }
 
 
 ###
-GET http://localhost:3000/api/guides?page[limit]=2&page[offset]=1
+GET http://localhost:3000/api/guides?page[limit]=28&page[offset]=1
 
 ###
-GET  http://localhost:3000/api/guides/64f72c34e333a2577cf72461
+GET  http://localhost:3000/api/guides/64f8731d4cdc4e00ebcf1988
 
 ###
 PATCH http://localhost:3000/api/guides/64f72c34e333a2577cf72461

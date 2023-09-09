@@ -1,0 +1,10 @@
+POST http://localhost:3000/api/user_guides
+Content-Type: application/json
+
+{
+    "user_id":"64fa0253dca55262f2e6cb2c",
+    "guide_id":"64f872ea2bd21f1ce4b23ebc"
+}
+
+###
+GET http://localhost:3000/api/user_guides
