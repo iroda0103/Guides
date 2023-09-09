@@ -8,3 +8,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/user_guides
+
+###
+POST http://localhost:3000/api/user_guides/64fa02cadca55262f2e6cb2d/read

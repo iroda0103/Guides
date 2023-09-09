@@ -49,14 +49,7 @@ async function findAll({ q, page, sort }) {
 }
 
 async function findById({ id: _id }) {
-  const result = await model
-    .findById({ _id })
-    .populate([
-      {
-        path: "Guide",
-      },
-    ])
-    .lean();
+  const result = await model.findById({ _id }).lean({ virtuals: true });
 
   if (!result) {
     return null;
