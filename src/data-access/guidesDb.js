@@ -10,7 +10,13 @@ const guideDb = Object.freeze({
 });
 
 async function insert({ id: _id, ...info }) {
+  console.log(info);
   const result = await model.create({ _id, ...info });
+  // const doc = await model.findOne({_id}).populate('Guide');
+  // 'test@gmail.com'
+  // console.log(doc.revision);
+  // console.log(result.fullName,result.revision,JSON.stringify(result),result.id);
+  // console.log(result.toObject({ virtuals: true }));
   const { _id: id, res } = result;
   return { id, ...info };
 }
@@ -22,7 +28,10 @@ async function findAll({ q, page, sort }) {
     filter.title = { $regex: `.*${q}.*`, $options: "i" };
   }
 
-  let dbQuery = model.find(filter).lean();
+  let dbQuery = model
+    .find(filter)
+    .populate("revision")
+    .lean({ virtuals: true });
 
   const total = await dbQuery.clone().count().exec();
 
@@ -36,25 +45,28 @@ async function findAll({ q, page, sort }) {
 
   const result = await dbQuery;
 
-  const res=result.map(guide=>{
-    let {_id:id,...info}=guide
-    return {id,...info}
-  })
+  const res = result.map((guide) => {
+    let { _id: id, revision, ...info } = guide;
+    return { id, ...info, revision: revision.length };
+  });
 
   return { data: res, total };
 }
 
 async function findById({ id: _id }) {
-  const result = await model.findById({ _id }).lean();
+  const result = await model
+    .findById({ _id })
+    .populate("revision")
+    .lean({ virtuals: true });
+  console.log(result.revision);
 
   if (!result) {
     return null;
   }
 
-  const { _id: id, ...info } = result;
-  return { id, ...info };
+  const { _id: id, revision, ...info } = result;
+  return { id, ...info, revision: revision.length };
 }
-
 async function findOne(filter) {
   const result = await model.findOne(filter).lean();
 
