@@ -26,7 +26,7 @@ async function findAll({ filters, q, page, sort }) {
     ];
   }
 
-  let dbQuery = model.find(filter).lean();
+  let dbQuery = model.find(filter);
 
   const total = await dbQuery.clone().count().exec();
 
@@ -38,10 +38,10 @@ async function findAll({ filters, q, page, sort }) {
     dbQuery.sort({ [sort.by]: sort.order == "asc" ? 1 : -1 });
   }
 
-  const result = await dbQuery;
+  const result = await dbQuery.lean();
 
   const res = result.map((user) => {
-    let { _id: id, ...info } = user;
+    const { _id: id, ...info } = user;
     return { id, ...info };
   });
 
@@ -49,14 +49,22 @@ async function findAll({ filters, q, page, sort }) {
 }
 
 async function findById({ id: _id }) {
-  const result = await model.findById({ _id }).lean();
+  const result = await model
+    .findById({ _id })
+    .populate("guides")
+    .lean({ virtuals: true });
 
   if (!result) {
     return null;
   }
 
-  const { _id: id, ...info } = result;
-  return { id, ...info };
+  const todo_guides = result.guides.filter((guide) => !guide.completed).length;
+  const read_guides = result.guides.filter((guide) => guide.completed).length;
+
+  const { _id: id, guides, ...info } = result;
+  const total_guides = guides.length;
+
+  return { id, ...info, total_guides, todo_guides, read_guides };
 }
 
 async function findOne(filter) {

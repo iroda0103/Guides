@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 
 const schema = new mongoose.Schema(
   {
@@ -10,9 +11,19 @@ const schema = new mongoose.Schema(
     password: { type: String, required: true },
   },
   {
+    toJSON: { virtuals: true },
     versionKey: false,
     timestamps: false,
   }
 );
+
+schema.virtual("guides", {
+  ref: "UserGuide",
+  localField: "_id",
+  foreignField: "user_id",
+  justOne: false,
+});
+
+schema.plugin(mongooseLeanVirtuals);
 
 module.exports = mongoose.model("User", schema);
