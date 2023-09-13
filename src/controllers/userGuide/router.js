@@ -3,7 +3,8 @@ const controllers = require("./");
 const expressCb = require("../../adapters/express-callback");
 
 const postUserGuide = expressCb(controllers.postUserGuide, {
-  checkLogin: true,checkRoles: ["admin"]
+  checkLogin: true,
+  checkRoles: ["admin"]
 });
 const getUserGuides = expressCb(controllers.getUserGuides, {
   checkLogin: true

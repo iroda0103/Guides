@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "seed": "node src/data-access/mongo/seeds/index.js"
+    "seed": "node src/data-access/mongo/seeds/index.js",
+    "format": "npx prettier --write ."
   },
   "keywords": [],
   "author": "",

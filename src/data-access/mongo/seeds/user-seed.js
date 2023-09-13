@@ -7,7 +7,7 @@ module.exports = async () => [
     role: "admin",
     age: 18,
     username: "admin01",
-    password: "1234"
+    password: hashSync("1234", 10)
   },
   {
     first_name: "James",
