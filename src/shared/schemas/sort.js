@@ -5,8 +5,8 @@ exports.buildSortSchema = (sortFields) =>
     by: Joi.string()
       .when("order", {
         is: Joi.exist(),
-        then: Joi.required(),
+        then: Joi.required()
       })
       .valid(...sortFields),
-    order: Joi.string().valid("asc", "desc"),
+    order: Joi.string().valid("asc", "desc")
   });

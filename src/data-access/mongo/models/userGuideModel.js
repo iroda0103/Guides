@@ -5,21 +5,20 @@ const schema = new mongoose.Schema(
     user_id: {
       type: mongoose.SchemaTypes.ObjectId,
       required: true,
-      ref: "User",
+      ref: "User"
     },
     guide_id: {
       type: mongoose.SchemaTypes.ObjectId,
       required: true,
-      ref: "Guide",
+      ref: "Guide"
     },
-    completed: { type: Boolean,default:false },
+    completed: { type: Boolean, default: false }
   },
   {
     toJSON: { virtuals: true },
     versionKey: false,
-    timestamps: false,
+    timestamps: false
   }
 );
-
 
 module.exports = mongoose.model("UserGuide", schema);

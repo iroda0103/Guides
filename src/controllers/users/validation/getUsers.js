@@ -1,14 +1,14 @@
 const Joi = require("joi");
 const {
   offsetPaginationSchema,
-  buildSortSchema,
+  buildSortSchema
 } = require("../../../shared/schemas");
 
 exports.getUsersSchema = {
   query: Joi.object({
     q: Joi.string().allow(""),
-    filters: Joi.object({ role: Joi.string }),
+    filters: { role: Joi.string().valid("all", "admin", "employee") },
     page: offsetPaginationSchema,
-    sort: buildSortSchema(["id", "age"]),
-  }),
+    sort: buildSortSchema(["id", "age"])
+  })
 };

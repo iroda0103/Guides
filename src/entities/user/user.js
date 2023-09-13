@@ -8,7 +8,7 @@ module.exports = function buildMakeUser({ Id, Hash }) {
     role,
     age,
     username,
-    password,
+    password
   } = {}) {
     if (!last_name) {
       throw new InvalidPropertyError(
@@ -61,7 +61,7 @@ module.exports = function buildMakeUser({ Id, Hash }) {
       getPassword: () => password,
       getAge: () => age,
       hashPassword,
-      comparePassword,
+      comparePassword
     });
 
     function hashPassword() {
@@ -69,6 +69,7 @@ module.exports = function buildMakeUser({ Id, Hash }) {
     }
 
     function comparePassword(plain) {
+      console.log(plain, password, "pppppppppppppppppppppjjjjjjjjjjjj");
       return Hash.compare(plain, password);
     }
   };

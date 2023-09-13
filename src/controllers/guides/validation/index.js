@@ -9,5 +9,5 @@ module.exports = {
   patchGuideSchema,
   getGuideSchema,
   deleteGuideSchema,
-  getGuidesSchema,
+  getGuidesSchema
 };

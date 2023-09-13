@@ -4,7 +4,7 @@ const { offsetPaginationSchema } = require("../../../shared/schemas");
 exports.getUserGuidesSchema = {
   query: Joi.object({
     q: Joi.string().allow(""),
-    filters: Joi.object({ completed : Joi.boolean() }),
-    page: offsetPaginationSchema,
-  }),
+    filters: { completed: Joi.boolean().valid(true, false) },
+    page: offsetPaginationSchema
+  })
 };

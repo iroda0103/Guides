@@ -3,7 +3,7 @@ const {
   listGuide,
   showGuide,
   removeGuide,
-  editGuide,
+  editGuide
 } = require("../../use-cases/guides");
 
 const makePostGuide = require("./postGuide");
@@ -23,7 +23,7 @@ const guideController = Object.freeze({
   getGuides,
   patchGuide,
   getGuide,
-  deleteGuide,
+  deleteGuide
 });
 
 module.exports = guideController;

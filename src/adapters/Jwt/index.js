@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../../shared/config");
 
 function generateToken(payload) {
-  return jwt.sign(payload, config.jwt.secret, { expiresIn: "123h" });
+  return jwt.sign(payload, config.jwt.secret, { expiresIn: "1h" });
 }
 
 function verifyToken(token) {
@@ -21,7 +21,7 @@ function verifyToken(token) {
 
 const Jwt = Object.freeze({
   generateToken,
-  verifyToken,
+  verifyToken
 });
 
 module.exports = Jwt;

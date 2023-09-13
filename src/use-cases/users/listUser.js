@@ -7,15 +7,18 @@ module.exports = function makeListUsers({ userDb }) {
     filters = {},
     q,
     page = { limit: 10, offset: 0 },
-    sort = { by: "id", order: "desc" },
+    sort = { by: "id", order: "desc" }
   }) {
+    if (filters.role == "all") {
+      filters = {};
+    }
     const { data, total } = await userDb.findAll({
       filters,
       q,
       page,
-      sort,
+      sort
     });
-    const pageInfo = { total, limit:page.limit, offset:page.offset };
+    const pageInfo = { total, limit: page.limit, offset: page.offset };
     return { data, pageInfo };
   };
 };

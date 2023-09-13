@@ -7,20 +7,20 @@ module.exports = function makeGetUserMe({ showUser }) {
 
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: 200,
-        body: { ...result },
+        body: { ...result }
       };
     } catch (e) {
       console.log(e);
 
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: mapErrorToStatus(e),
-        body: { message: e.message },
+        body: { message: e.message }
       };
     }
   };

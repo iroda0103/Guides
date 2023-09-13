@@ -3,5 +3,5 @@ const { offsetPaginationSchema } = require("./offset-pagination");
 
 module.exports = {
   offsetPaginationSchema,
-  buildSortSchema,
+  buildSortSchema
 };

@@ -12,29 +12,34 @@ module.exports = function makeGetUserGuides({ listUserGuide }) {
       );
       const { error, query } = await validator.validate();
 
+      const queryFilters = query.filters ? query.filters : {};
+
       if (error) {
         throw new InvalidPropertyError(error);
       }
 
-      const data = await listUserGuide({ ...query });
+      const data = await listUserGuide({
+        ...query,
+        filters: { user_id: httpRequest.user.id, ...queryFilters }
+      });
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: 200,
-        body: { ...data },
+        body: { ...data }
       };
     } catch (e) {
       console.log(e);
 
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: mapErrorToStatus(e),
         body: {
-          message: e.message,
-        },
+          message: e.message
+        }
       };
     }
   };

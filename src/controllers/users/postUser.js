@@ -20,22 +20,22 @@ module.exports = function makePostUser({ addUser }) {
 
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: 201,
-        body: { data },
+        body: { data }
       };
     } catch (e) {
       console.log(e);
 
       return {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         statusCode: mapErrorToStatus(e),
         body: {
-          message: e.message,
-        },
+          message: e.message
+        }
       };
     }
   };

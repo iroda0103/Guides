@@ -6,11 +6,15 @@ const { NotFoundError } = require("../../shared/errors");
  * @param {import('../../data-access/userGuidesDb')} deps.userGuideDb
  */
 module.exports = function makeAddUserGuide({ userGuideDb }) {
-  return async function addUserGuide({ id, ...changes }) {
+  return async function addUserGuide({ id, user, ...changes }) {
     try {
       const userGuideToEdit = await userGuideDb.findById({ id });
 
       if (!userGuideToEdit) {
+        throw new NotFoundError("User Guide topilmadi");
+      }
+
+      if (!userGuideToEdit.user_id == user) {
         throw new NotFoundError("User Guide topilmadi");
       }
 
@@ -20,7 +24,7 @@ module.exports = function makeAddUserGuide({ userGuideDb }) {
         id: userGuide.getId(),
         user_id: userGuide.getUserId(),
         guide_id: userGuide.getGuideId(),
-        completed: userGuide.getCompleted(),
+        completed: userGuide.getCompleted()
       });
 
       return result;

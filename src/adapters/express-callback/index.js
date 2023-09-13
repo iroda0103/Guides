@@ -30,7 +30,6 @@ module.exports = function makeExpressCallback(
         additional.user = result.user;
       }
     }
-
     if (checkRoles) {
       if (!checkRoles.some((role) => role == additional.user.role)) {
         return res.status(403).json({ error: "Siz ruxsatga ega emassiz" });
@@ -42,11 +41,11 @@ module.exports = function makeExpressCallback(
       query: req.query,
       path: req.path,
       headers: {
-        "Content-Type": req.get("Content-Type"),
+        "Content-Type": req.get("Content-Type")
       },
-      ...additional,
+      ...additional
     };
-    
+
     controllers(httpRequest)
       .then((httpResponse) => {
         if (httpResponse.headers) {

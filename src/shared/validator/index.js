@@ -3,9 +3,8 @@
  */
 module.exports = function httpValidator(data, schema) {
   return Object.freeze({
-    validate,
+    validate
   });
-
   async function validate() {
     const sanitizedData = {};
     for (const type of ["body", "query", "params"]) {

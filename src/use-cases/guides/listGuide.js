@@ -7,13 +7,13 @@ module.exports = function makeListGuide({ guideDb }) {
     filters = {},
     q,
     page = { limit: 10, offset: 0 },
-    sort = { by: "id", order: "desc" },
+    sort = { by: "id", order: "desc" }
   }) {
     const { data, total } = await guideDb.findAll({
       filters,
       q,
       page,
-      sort,
+      sort
     });
     const pageInfo = { total, limit: page.limit, offset: page.offset };
     return { data, pageInfo };

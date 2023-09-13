@@ -6,19 +6,33 @@ const userGuideDb = Object.freeze({
   findById,
   findOne,
   remove,
-  update,
+  update
 });
 
-async function insert({ id: _id, ...info }) {
-  const result = await model.create({ _id, ...info });
-  const { _id: id, res } = result;
+async function insert(data) {
+  if (Array.isArray(data)) {
+    const userGuides = data.map((user_guide) => {
+      const { id: _id, ...info } = user_guide;
+      return { _id, ...info };
+    });
 
-  return { id, ...info };
+    const result = await model.create(userGuides);
+
+    return result.map((item) => {
+      const { _id: id, ...itemInfo } = item.toObject();
+      return { id, ...itemInfo };
+    });
+  } else {
+    const { id: _id, ...info } = data;
+    const result_1 = (await model.create({ _id, ...info })).toObject();
+    const { _id: id, ...itemInfo } = result_1;
+
+    return { id, ...itemInfo };
+  }
 }
 
-async function findAll({ q, page, sort }) {
-  const filter = {};
-
+async function findAll({ q, page, sort, filters }) {
+  const filter = { ...filters };
   if (q) {
     filter.title = { $regex: `.*${q}.*`, $options: "i" };
   }

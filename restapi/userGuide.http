@@ -2,12 +2,24 @@ POST http://localhost:3000/api/user_guides
 Content-Type: application/json
 
 {
-    "user_id":"64fa0253dca55262f2e6cb2c",
-    "guide_id":"64f872ea2bd21f1ce4b23ebc"
+    "user_id":"65009e9185a6812004db063a",
+    "guide_id":"65009a5137dbc896107c53c8"
 }
 
 ###
-GET http://localhost:3000/api/user_guides
+GET http://localhost:3000/api/user_guides?filters[completed]=false
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDllOTE4NWE2ODEyMDA0ZGIwNjNhIiwicm9sZSI6ImVtcGxveWVlIn0sImlhdCI6MTY5NDU2MTM4NCwiZXhwIjoxNjk1MDA0MTg0fQ.aKSfkUrL9PNlnjEYOefO7xbktDCiLSnXwVIAVHWBYJI
 
 ###
-POST http://localhost:3000/api/user_guides/64fa02cadca55262f2e6cb2d/read
+POST http://localhost:3000/api/user_guides/6500f4b6f610ea1443b4cd1e/read
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmODcxZjNmM2ZkNjQ5M2IyYWNhYjlhIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUxNzc2NiwiZXhwIjoxNjk0OTYwNTY2fQ.uj_jkj2XVHPBBpakuKWuSVBScGG01Xu0yhrFrapfy_M
+
+###
+POST http://localhost:3000/api/user_guides/bulk
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmODcxZjNmM2ZkNjQ5M2IyYWNhYjlhIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUxNzc2NiwiZXhwIjoxNjk0OTYwNTY2fQ.uj_jkj2XVHPBBpakuKWuSVBScGG01Xu0yhrFrapfy_M
+Content-Type: application/json
+
+{
+    "guide_id":"65009a5137dbc896107c53c8",
+    "user_ids":["65009310bce7f2521e2cfc0d"]
+}

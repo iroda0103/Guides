@@ -11,7 +11,7 @@ module.exports = function makeAddUserGuide({ userGuideDb, userDb, guideDb }) {
   return async function addUserGuide(data) {
     try {
       const userGuide = makeUserGuide({
-        ...data,
+        ...data
       });
 
       const guideInfo = await guideDb.findById({ id: userGuide.getGuideId() });
@@ -30,7 +30,7 @@ module.exports = function makeAddUserGuide({ userGuideDb, userDb, guideDb }) {
         id: userGuide.getId(),
         user_id: userGuide.getUserId(),
         guide_id: userGuide.getGuideId(),
-        completed: userGuide.getCompleted(),
+        completed: userGuide.getCompleted()
       });
 
       return result;

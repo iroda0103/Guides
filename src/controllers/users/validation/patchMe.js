@@ -7,6 +7,6 @@ exports.patchMeSchema = {
     role: Joi.string().trim(),
     age: Joi.number().min(0),
     username: Joi.string().trim(),
-    password: Joi.string().trim(),
-  }),
+    password: Joi.string().trim()
+  })
 };

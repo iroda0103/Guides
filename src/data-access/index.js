@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("../shared/config");
 const usersDb = require("./usersDb");
-const guidesDb=require('./guidesDb')
+const guidesDb = require("./guidesDb");
 
 module.exports = {
   connect() {

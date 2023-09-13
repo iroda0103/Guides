@@ -1,20 +1,24 @@
 POST http://localhost:3000/api/guides
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDhlYjViNjZiMGE1MDFhZmMxYjkxIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUzNTc1NCwiZXhwIjoxNjk0OTc4NTU0fQ.4q9yjBlaV3RyejfJhazyUzhnjbKH9_NwWq-8UsvgUzw
 Content-Type: application/json
 
 {
-    "title":"Qoidad",
-    "content":"Content1"
+    "title":"nnn",
+    "content":"kjjj"
 }
 
 
 ###
-GET http://localhost:3000/api/guides?page[limit]=28&page[offset]=1
+GET http://localhost:3000/api/guides
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDhlYjViNjZiMGE1MDFhZmMxYjkxIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUzNTc1NCwiZXhwIjoxNjk0OTc4NTU0fQ.4q9yjBlaV3RyejfJhazyUzhnjbKH9_NwWq-8UsvgUzw
 
 ###
-GET  http://localhost:3000/api/guides/64f8731d4cdc4e00ebcf1988
+GET  http://localhost:3000/api/guides/65009a5137dbc896107c53c8
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDhlYjViNjZiMGE1MDFhZmMxYjkxIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUzNTc1NCwiZXhwIjoxNjk0OTc4NTU0fQ.4q9yjBlaV3RyejfJhazyUzhnjbKH9_NwWq-8UsvgUzw
 
 ###
-PATCH http://localhost:3000/api/guides/64f72c34e333a2577cf72461
+PATCH http://localhost:3000/api/guides/650098d74299e42df66260d0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDhlYjViNjZiMGE1MDFhZmMxYjkxIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUzNTc1NCwiZXhwIjoxNjk0OTc4NTU0fQ.4q9yjBlaV3RyejfJhazyUzhnjbKH9_NwWq-8UsvgUzw
 Content-Type: application/json
 
 {
@@ -22,4 +26,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/api/guides/64f72c34e333a2577cf72461
+DELETE http://localhost:3000/api/guides/650098d74299e42df66260d0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDhlYjViNjZiMGE1MDFhZmMxYjkxIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUzNTc1NCwiZXhwIjoxNjk0OTc4NTU0fQ.4q9yjBlaV3RyejfJhazyUzhnjbKH9_NwWq-8UsvgUzw

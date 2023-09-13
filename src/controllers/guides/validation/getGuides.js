@@ -1,13 +1,13 @@
 const Joi = require("joi");
 const {
   offsetPaginationSchema,
-  buildSortSchema,
+  buildSortSchema
 } = require("../../../shared/schemas");
 
 exports.getGuidesSchema = {
   query: Joi.object({
     q: Joi.string().allow(""),
     page: offsetPaginationSchema,
-    sort: buildSortSchema(["id"]),
-  }),
+    sort: buildSortSchema(["id"])
+  })
 };

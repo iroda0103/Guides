@@ -8,13 +8,14 @@ module.exports = function makeAddGuide({ guideDb }) {
   return async function addGuide(data) {
     try {
       const guide = makeGuide({
-        ...data,
+        ...data
       });
 
       const result = await guideDb.insert({
         id: guide.getId(),
         title: guide.getTitle(),
         content: guide.getContent(),
+        notify: guide.getNotify()
       });
 
       return result;

@@ -1,4 +1,5 @@
 const makeUser = require("../../entities/user");
+const { NotFoundError } = require("../../shared/errors");
 
 /**
  * @param {object} deps
@@ -22,7 +23,7 @@ module.exports = function makeEditUser({ userDb }) {
         age: user.getAge(),
         role: user.getRole(),
         username: user.getUsername(),
-        password: user.getPassword(),
+        password: user.getPassword()
       });
 
       return result;

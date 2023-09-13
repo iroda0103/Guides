@@ -1,22 +1,26 @@
 const { InvalidPropertyError } = require("../../shared/errors");
 const { mapErrorToStatus } = require("../../shared/errors/handle");
 const httpValidator = require("../../shared/validator");
-const { patchUserSchema } = require("./validation");
+const { postBulkUserGuideSchema } = require("./validation");
 
-module.exports = function makePatchUser({ editUser }) {
-  return async function patchUser(httpRequest) {
+module.exports = function makePostBulkUserGuide({ bulkUserGuide }) {
+  return async function postBulkUserGuide(httpRequest) {
     try {
       const validator = httpValidator(
-        { body: httpRequest.body, params: httpRequest.params },
-        patchUserSchema
+        { body: httpRequest.body },
+        postBulkUserGuideSchema
       );
-      const { error, body, params } = await validator.validate();
+      const { error, body } = await validator.validate();
 
       if (error) {
         throw new InvalidPropertyError(error);
       }
 
-      const data = await editUser({ ...params, ...body });
+      const body_new = body.user_ids.map((user_id) => {
+        return { user_id, guide_id: body.guide_id };
+      });
+
+      const data = await bulkUserGuide(body_new);
 
       return {
         headers: {

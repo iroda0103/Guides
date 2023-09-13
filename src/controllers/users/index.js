@@ -4,7 +4,7 @@ const {
   showUser,
   removeUser,
   loginUser,
-  editUser,
+  editUser
 } = require("../../use-cases/users");
 
 const makePostUser = require("./postUser");
@@ -33,7 +33,7 @@ const usersController = Object.freeze({
   postLoginUser,
   getUserMe,
   patchUser,
-  patchMe,
+  patchMe
 });
 
 module.exports = usersController;

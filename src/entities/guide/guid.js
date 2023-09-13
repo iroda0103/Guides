@@ -5,7 +5,7 @@ module.exports = function buildMakeGuide({ Id }) {
     id = Id.makeId(),
     title,
     content,
-    notify = false,
+    notify = false
   } = {}) {
     if (!title) {
       throw new InvalidPropertyError(
@@ -27,7 +27,7 @@ module.exports = function buildMakeGuide({ Id }) {
       getId: () => id,
       getTitle: () => title,
       getContent: () => content,
-      getNotify: () => notify,
+      getNotify: () => notify
     });
   };
 };

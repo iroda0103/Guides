@@ -1,0 +1,17 @@
+
+----------------Admin-----------
+{
+    "username": "admin02",
+    "password":"1234"
+}
+
+
+----------------Employee-----------
+{
+    "username": "employee",
+    "password":"1234"
+}
+
+
+Izoh:
+SHundayga ishlashi kk edi.Lekin seedda password hashlaganim

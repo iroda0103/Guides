@@ -5,7 +5,7 @@ module.exports = function buildMakeUserGuide({ Id }) {
     id = Id.makeId(),
     user_id,
     guide_id,
-    completed = false,
+    completed = false
   } = {}) {
     if (!user_id) {
       throw new InvalidPropertyError(
@@ -27,7 +27,7 @@ module.exports = function buildMakeUserGuide({ Id }) {
       getId: () => id,
       getUserId: () => user_id,
       getGuideId: () => guide_id,
-      getCompleted: () => completed,
+      getCompleted: () => completed
     });
   };
 };

@@ -6,7 +6,7 @@ const userDb = Object.freeze({
   findById,
   findOne,
   remove,
-  update,
+  update
 });
 
 async function insert({ id: _id, ...info }) {
@@ -16,13 +16,13 @@ async function insert({ id: _id, ...info }) {
 }
 
 async function findAll({ filters, q, page, sort }) {
-  const filter = {};
+  const filter = { ...filters };
 
   if (q) {
     filter.$or = [
       { first_name: { $regex: `.*${q}.*`, $options: "i" } },
       { last_name: { $regex: `.*${q}.*`, $options: "i" } },
-      { username: { $regex: `.*${q}.*`, $options: "i" } },
+      { username: { $regex: `.*${q}.*`, $options: "i" } }
     ];
   }
 

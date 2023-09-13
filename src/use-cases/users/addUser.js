@@ -1,4 +1,5 @@
 const makeUser = require("../../entities/user");
+const { BadRequestError } = require("../../shared/errors");
 
 /**
  * @param {object} deps
@@ -8,8 +9,16 @@ module.exports = function makeAddUser({ userDb }) {
   return async function addUser(data) {
     try {
       const user = makeUser({
-        ...data,
+        ...data
       });
+
+      const userInfo = await userDb.findOne({ username: user.getUsername() });
+
+      if (userInfo) {
+        throw new BadRequestError(
+          "Bunday nomli username mavjud boshqa nom tanlang"
+        );
+      }
 
       user.hashPassword();
       const result = await userDb.insert({
@@ -19,7 +28,7 @@ module.exports = function makeAddUser({ userDb }) {
         age: user.getAge(),
         role: user.getRole(),
         username: user.getUsername(),
-        password: user.getPassword(),
+        password: user.getPassword()
       });
 
       return result;

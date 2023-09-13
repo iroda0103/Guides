@@ -2,11 +2,13 @@ const express = require("express");
 const controllers = require("./");
 const expressCb = require("../../adapters/express-callback");
 
-const postGuide = expressCb(controllers.postGuide);
-const getGuides = expressCb(controllers.getGuides);
-const getGuide = expressCb(controllers.getGuide);
-const deleteGuide = expressCb(controllers.deleteGuide);
-const patchGuide = expressCb(controllers.patchGuide);
+const postGuide = expressCb(controllers.postGuide, { checkRoles: ["admin"] });
+const getGuides = expressCb(controllers.getGuides, { checkLogin: true });
+const getGuide = expressCb(controllers.getGuide, { checkLogin: true });
+const patchGuide = expressCb(controllers.patchGuide, { checkRoles: ["admin"] });
+const deleteGuide = expressCb(controllers.deleteGuide, {
+  checkRoles: ["admin"]
+});
 
 const router = express.Router();
 

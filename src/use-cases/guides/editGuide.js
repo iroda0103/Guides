@@ -19,7 +19,7 @@ module.exports = function makeEditGuide({ guideDb }) {
       const result = await guideDb.update({
         id: guide.getId(),
         title: guide.getTitle(),
-        content: guide.getContent(),
+        content: guide.getContent()
       });
 
       return result;

@@ -5,7 +5,7 @@ const {
   NotFoundError,
   ForbiddenError,
 
-  BadRequestError,
+  BadRequestError
 } = require("./index");
 
 exports.mapErrorToStatus = (err) => {

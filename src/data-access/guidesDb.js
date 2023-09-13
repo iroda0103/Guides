@@ -1,4 +1,6 @@
 const model = require("./mongo/models/guideModel");
+const User = require("./mongo/models/userModel");
+const UserGuide = require("./mongo/models/userGuideModel");
 
 const guideDb = Object.freeze({
   insert,
@@ -6,17 +8,24 @@ const guideDb = Object.freeze({
   findById,
   findOne,
   remove,
-  update,
+  update
 });
 
 async function insert({ id: _id, ...info }) {
-  console.log(info);
   const result = await model.create({ _id, ...info });
-  // const doc = await model.findOne({_id}).populate('Guide');
-  // 'test@gmail.com'
-  // console.log(doc.revision);
-  // console.log(result.fullName,result.revision,JSON.stringify(result),result.id);
-  // console.log(result.toObject({ virtuals: true }));
+
+  if (info.notify) {
+    const users = await User.find().lean();
+
+    const userGuides = users.map((user) => ({
+      user_id: user._id,
+      guide_id: result._id,
+      read: false
+    }));
+
+    await UserGuide.create(userGuides);
+  }
+
   const { _id: id, res } = result;
   return { id, ...info };
 }
@@ -58,7 +67,6 @@ async function findById({ id: _id }) {
     .findById({ _id })
     .populate("revision")
     .lean({ virtuals: true });
-  console.log(result.revision);
 
   if (!result) {
     return null;
