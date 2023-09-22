@@ -69,7 +69,6 @@ module.exports = function buildMakeUser({ Id, Hash }) {
     }
 
     function comparePassword(plain) {
-      console.log(plain, password, "pppppppppppppppppppppjjjjjjjjjjjj");
       return Hash.compare(plain, password);
     }
   };

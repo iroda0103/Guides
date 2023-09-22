@@ -6,21 +6,17 @@ const makeGuide = require("../../entities/guide");
  */
 module.exports = function makeAddGuide({ guideDb }) {
   return async function addGuide(data) {
-    try {
-      const guide = makeGuide({
-        ...data
-      });
+    const guide = makeGuide({
+      ...data
+    });
 
-      const result = await guideDb.insert({
-        id: guide.getId(),
-        title: guide.getTitle(),
-        content: guide.getContent(),
-        notify: guide.getNotify()
-      });
+    const result = await guideDb.insert({
+      id: guide.getId(),
+      title: guide.getTitle(),
+      content: guide.getContent(),
+      notify: guide.getNotify()
+    });
 
-      return result;
-    } catch (err) {
-      throw err;
-    }
+    return result;
   };
 };

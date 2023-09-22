@@ -7,7 +7,10 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "seed": "node src/data-access/mongo/seeds/index.js",
-    "format": "npx prettier --write ."
+    "format:check": "prettier --check .",
+    "format:write": "npx prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +26,14 @@
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
     "mongoose-lean-virtuals": "^0.9.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
   }
 }

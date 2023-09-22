@@ -1,5 +1,5 @@
 const makeUserGuide = require("../../entities/userGuide");
-const { NotFoundError } = require("../../shared/errors");
+const { BadRequestError } = require("../../shared/errors");
 
 /**
  * @param {object} deps
@@ -9,33 +9,29 @@ const { NotFoundError } = require("../../shared/errors");
  */
 module.exports = function makeAddUserGuide({ userGuideDb, userDb, guideDb }) {
   return async function addUserGuide(data) {
-    try {
-      const userGuide = makeUserGuide({
-        ...data
-      });
+    const userGuide = makeUserGuide({
+      ...data
+    });
 
-      const guideInfo = await guideDb.findById({ id: userGuide.getGuideId() });
+    const guideInfo = await guideDb.findById({ id: userGuide.getGuideId() });
 
-      if (!guideInfo) {
-        throw new NotFoundError("Guide topilmadi");
-      }
-
-      const userInfo = await userDb.findById({ id: userGuide.getUserId() });
-
-      if (!userInfo) {
-        throw new NotFoundError("Foydalanuvchi topilmadi");
-      }
-
-      const result = await userGuideDb.insert({
-        id: userGuide.getId(),
-        user_id: userGuide.getUserId(),
-        guide_id: userGuide.getGuideId(),
-        completed: userGuide.getCompleted()
-      });
-
-      return result;
-    } catch (err) {
-      throw err;
+    if (!guideInfo) {
+      throw new BadRequestError("Bunday Guide mavjud emas");
     }
+
+    const userInfo = await userDb.findById({ id: userGuide.getUserId() });
+
+    if (!userInfo) {
+      throw new BadRequestError("Bunday user mavjud emas");
+    }
+
+    const result = await userGuideDb.insert({
+      id: userGuide.getId(),
+      user_id: userGuide.getUserId(),
+      guide_id: userGuide.getGuideId(),
+      completed: userGuide.getCompleted()
+    });
+
+    return result;
   };
 };

@@ -7,28 +7,24 @@ const { NotFoundError } = require("../../shared/errors");
  */
 module.exports = function makeEditUser({ userDb }) {
   return async function editUser({ id, ...changes }) {
-    try {
-      const userToEdit = await userDb.findById({ id });
+    const userToEdit = await userDb.findById({ id });
 
-      if (!userToEdit) {
-        throw new NotFoundError("Foydalanuvchi topilmadi.");
-      }
-      const user = makeUser({ ...userToEdit, ...changes });
-
-      user.hashPassword();
-      const result = await userDb.update({
-        id: user.getId(),
-        first_name: user.getFirstName(),
-        last_name: user.getLastName(),
-        age: user.getAge(),
-        role: user.getRole(),
-        username: user.getUsername(),
-        password: user.getPassword()
-      });
-
-      return result;
-    } catch (err) {
-      throw err;
+    if (!userToEdit) {
+      throw new NotFoundError("Foydalanuvchi topilmadi.");
     }
+    const user = makeUser({ ...userToEdit, ...changes });
+
+    user.hashPassword();
+    const result = await userDb.update({
+      id: user.getId(),
+      first_name: user.getFirstName(),
+      last_name: user.getLastName(),
+      age: user.getAge(),
+      role: user.getRole(),
+      username: user.getUsername(),
+      password: user.getPassword()
+    });
+
+    return result;
   };
 };

@@ -12,7 +12,7 @@ module.exports = function makeRemoveUser({ userDb }) {
       throw new NotFoundError("Foydalanuvchi topilmadi.");
     }
 
-    const result = await userDb.remove(userToDelete);
+    await userDb.remove(userToDelete);
 
     return userToDelete;
   };

@@ -12,7 +12,7 @@ module.exports = function makeRemoveGuide({ guideDb }) {
       throw new NotFoundError("Guide topilmadi");
     }
 
-    const result = await guideDb.remove(guideToDelete);
+    await guideDb.remove(guideToDelete);
 
     return guideToDelete;
   };

@@ -7,33 +7,29 @@ const { BadRequestError } = require("../../shared/errors");
  */
 module.exports = function makeAddUser({ userDb }) {
   return async function addUser(data) {
-    try {
-      const user = makeUser({
-        ...data
-      });
+    const user = makeUser({
+      ...data
+    });
 
-      const userInfo = await userDb.findOne({ username: user.getUsername() });
+    const userInfo = await userDb.findOne({ username: user.getUsername() });
 
-      if (userInfo) {
-        throw new BadRequestError(
-          "Bunday nomli username mavjud boshqa nom tanlang"
-        );
-      }
-
-      user.hashPassword();
-      const result = await userDb.insert({
-        id: user.getId(),
-        first_name: user.getFirstName(),
-        last_name: user.getLastName(),
-        age: user.getAge(),
-        role: user.getRole(),
-        username: user.getUsername(),
-        password: user.getPassword()
-      });
-
-      return result;
-    } catch (err) {
-      throw err;
+    if (userInfo) {
+      throw new BadRequestError(
+        "Bunday nomli username mavjud boshqa nom tanlang"
+      );
     }
+
+    user.hashPassword();
+    const result = await userDb.insert({
+      id: user.getId(),
+      first_name: user.getFirstName(),
+      last_name: user.getLastName(),
+      age: user.getAge(),
+      role: user.getRole(),
+      username: user.getUsername(),
+      password: user.getPassword()
+    });
+
+    return result;
   };
 };

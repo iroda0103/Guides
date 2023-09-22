@@ -87,6 +87,8 @@ async function findOne(filter) {
 }
 
 async function remove({ id: _id }) {
+  await UserGuide.deleteMany({ guide_id: _id });
+
   return model.deleteOne({ _id }).lean();
 }
 

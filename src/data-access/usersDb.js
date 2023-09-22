@@ -1,4 +1,5 @@
 const model = require("./mongo/models/userModel");
+const UserGuide = require("./mongo/models/userGuideModel");
 
 const userDb = Object.freeze({
   insert,
@@ -79,6 +80,7 @@ async function findOne(filter) {
 }
 
 async function remove({ id: _id }) {
+  await UserGuide.deleteMany({ user_id: _id });
   return model.deleteOne({ _id }).lean();
 }
 

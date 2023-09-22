@@ -2,7 +2,7 @@ const express = require("express");
 const controllers = require("./");
 const expressCb = require("../../adapters/express-callback");
 
-const postUser = expressCb(controllers.postUser, { checkRoles: ["admin"] });
+const postUser = expressCb(controllers.postUser);
 const getUsers = expressCb(controllers.getUsers, { checkRoles: ["admin"] });
 const getUser = expressCb(controllers.getUser, { checkRoles: ["admin"] });
 const deleteUser = expressCb(controllers.deleteUser, { checkRoles: ["admin"] });
